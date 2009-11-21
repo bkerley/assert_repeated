@@ -1,10 +1,26 @@
 module AssertRepeated
-  def assert_repeatedly_true(count)
+  def assert_repeatedly_true(count, message=nil)
     count.times do
       result = yield
-      assert_block("#{result} is not true"){ false } unless result
+      assert(false, build_message(message, "<?> is not true", result)) unless result
     end
-    assert_block{ true }
+    # increment the count
+    assert true
+  end
+
+  def assert_repeatedly_false(count, message=nil, &block)
+    assert_repeatedly_true(count, message) do
+      ! block.call
+    end
+  end
+
+  def assert_repeatedly(count, matcher=true, message=nil)
+    count.times do
+      result = yield
+      assert(false, build_message(message, "<?> is not true", result)) unless matcher === result
+    end
+    # increment the count
+    assert true
   end
 end
 

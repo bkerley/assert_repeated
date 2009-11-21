@@ -34,4 +34,22 @@ class TestAssertRepeated < Test::Unit::TestCase
 
     assert_equal 1, count
   end
+
+  def test_one_negative
+    assert_nothing_raised do
+      assert_repeatedly_false(1){ false }
+    end
+  end
+
+  def test_assert_repeatedly_base
+    assert_nothing_raised do
+      assert_repeatedly(1, 7) { 7 }
+      assert_repeatedly(1, /x/) { 'x' }
+    end
+
+    assert_raise Test::Unit::AssertionFailedError do
+      assert_repeatedly(1, 7) { 8 }
+      assert_repeatedly(1, /x/) { 'f' }
+    end
+  end
 end
