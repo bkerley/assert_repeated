@@ -1,30 +1,19 @@
 require 'helper'
 
 class TestAssertRepeated < Test::Unit::TestCase
-  def test_one_passing
-    assert_nothing_raised do
-      assert_repeatedly_true(1){ true }
-    end
-  end
-
-  def test_one_failure
-    assert_assertion_failure_raised_with_message "<false> is not true." do
-      assert_repeatedly_true(1){ false }
-    end
-  end
-
-  def test_a_hundred_passings
+  def test_repeatedly_true
     count = 0
-    assert_repeatedly_true 100 do
-      count = count + 1
-      true
+    assert_nothing_raised do
+      assert_repeatedly_true 100 do
+        count = count + 1
+        true
+      end
     end
 
     assert_equal 100, count
-  end
 
-  def test_first_failure
     count = 0
+
     assert_assertion_failure_raised_with_message "<false> is not true." do
       assert_repeatedly_true 100 do
         count = count + 1
@@ -35,10 +24,27 @@ class TestAssertRepeated < Test::Unit::TestCase
     assert_equal 1, count
   end
 
-  def test_one_negative
+  def test_repeatedly_false
+    count = 0
     assert_nothing_raised do
-      assert_repeatedly_false(1){ false }
+      assert_repeatedly_false 100 do
+        count = count + 1
+        false
+      end
     end
+
+    assert_equal 100, count
+
+    count = 0
+
+    assert_assertion_failure_raised_with_message "<true> is not false." do
+      assert_repeatedly_false 100 do
+        count = count + 1
+        true
+      end
+    end
+
+    assert_equal 1, count
   end
 
   def test_assert_repeatedly_base
