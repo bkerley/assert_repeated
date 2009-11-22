@@ -1,5 +1,8 @@
 = assert_repeated
 
+Assertions that run multiple times, used to smoke-test or
+randomly probe a function with a large domain.
+
     assert_repeatedly_true(1000) do
       expected = rand(100)
       actual = decrypt(encrypt(expected))

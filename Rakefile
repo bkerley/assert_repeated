@@ -5,11 +5,11 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "assert_repeated"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = "Assertions that run multiple times"
+    gem.description = "Assertions that run multiple times for testing functions with large domains"
     gem.email = "bkerley@brycekerley.net"
     gem.homepage = "http://github.com/bkerley/assert_repeated"
-    gem.authors = ["Bryce Kerley"]
+    gem.authors = ["Bryce Kerley", "Todd Willey"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
