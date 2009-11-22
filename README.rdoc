@@ -1,17 +1,36 @@
 = assert_repeated
 
-Description goes here.
+    assert_repeatedly_true(1000) do
+      expected = rand(100)
+      actual = decrypt(encrypt(expected))
+      expected == actual
+    end
+
+    assert_repeatedly_false(10) do
+      !she_loves_me
+    end
+
+    assert_repeatedly(100_000, /awesome/) do
+      "writing tests is awesome!"
+    end
+
+This is way better than running assert in a loop because it doesn't
+blow up the assertion counter:
+
+    45 tests, 1089 assertions, 0 failures, 0 errors
+
 
 == Note on Patches/Pull Requests
- 
+
 * Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+* Add tests for your feature addition or bug fix.
+* Commit.
+* Make the tests pass.
+* Commit.
+* Send me a pull request.
 
 == Copyright
 
-Copyright (c) 2009 Bryce Kerley. See LICENSE for details.
+Copyright (c) 2009 Bryce Kerley and Todd Willey.
+
+DO WHATEVER YOU WANT WITH THIS SOFTWARE; see LICENSE for details.
